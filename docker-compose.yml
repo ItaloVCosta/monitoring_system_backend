@@ -1,0 +1,19 @@
+services:
+  php:
+    image: php:8.3-fpm
+    container_name: php_server
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8000:80"
+  
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: monitoring_system
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"

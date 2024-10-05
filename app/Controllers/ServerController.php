@@ -18,7 +18,7 @@ class ServerController {
             echo json_encode($servers);
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode(['error' => 'An error occurred while fetching servers.']);
+            echo json_encode([__('words.error') => __('messages.error.server')]);
         }
     }
 
@@ -30,11 +30,11 @@ class ServerController {
                 echo json_encode($server);
             } else {
                 http_response_code(404);
-                echo json_encode(['error' => 'Server not found']);
+                echo json_encode([__('words.error') =>  __('messages.http.error.404.server')]);
             }
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode(['error' => 'An error occurred while fetching server details.']);
+            echo json_encode([__('words.error') => __('messages.error.server')]);
         }
     }
 
@@ -43,10 +43,10 @@ class ServerController {
 
         try {
             $serverId = $this->serverService->createServer($data);
-            echo json_encode(['message' => 'Server created successfully', 'id' => $serverId]);
+            echo json_encode([__('words.message') => __('messages.http.success.created.server'), 'id' => $serverId]);
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode(['error' => 'An error occurred while creating the server.']);
+            echo json_encode([__('words.error') => __('messages.error.server')]);
         }
     }
 
@@ -56,14 +56,14 @@ class ServerController {
         try {
             $updated = $this->serverService->updateServer($id, $data);
             if ($updated) {
-                echo json_encode(['message' => 'Server updated successfully']);
+                echo json_encode([__('words.message') => __('messages.http.success.updated.server')]);
             } else {
                 http_response_code(404);
-                echo json_encode(['error' => 'Server not found']);
+                echo json_encode([__('words.error') =>  __('messages.http.error.404.server')]);
             }
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode(['error' => 'An error occurred while updating the server.']);
+            echo json_encode([__('words.error') => __('messages.error.server')]);
         }
     }
 
@@ -72,14 +72,14 @@ class ServerController {
             $deleted = $this->serverService->deleteServer($id);
 
             if ($deleted) {
-                echo json_encode(['message' => 'Server deleted successfully']);
+                echo json_encode([__('words.message') => __('messages.http.success.deleted.server')]);
             } else {
                 http_response_code(404);
-                echo json_encode(['error' => 'Server not found']);
+                echo json_encode([__('words.error') =>  __('messages.http.error.404.server')]);
             }
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode(['error' => 'An error occurred while deleting the server.']);
+            echo json_encode([__('words.error') => __('messages.error.server')]);
         }
     }
 }

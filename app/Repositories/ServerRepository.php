@@ -53,7 +53,6 @@ class ServerRepository extends BaseRepository {
             
             return (int) $this->pdo->lastInsertId();
         } catch (PDOException $e) {
-            echo($e);
             throw new RuntimeException("Failed to create server.", 0, $e);
         }
     }
@@ -81,7 +80,6 @@ class ServerRepository extends BaseRepository {
                 'id' => $server->getId(),
             ]);
         } catch (PDOException $e) {
-            echo($e);
             throw new \RuntimeException("Failed to update server with ID {$server->getId()}.", 0, $e);
         }
     }

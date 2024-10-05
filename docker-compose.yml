@@ -6,6 +6,9 @@ services:
       - ./:/var/www/html
     ports:
       - "8000:80"
+    build:
+      context: .
+      dockerfile: Dockerfile
   
   mysql:
     image: mysql:8.0

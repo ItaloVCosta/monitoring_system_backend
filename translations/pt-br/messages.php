@@ -8,8 +8,11 @@ return [
     'http' => [
         'error' =>[
             '404' => [
-                'server' => 'Servidor não encontrado'
-            ]
+                'server' => 'Servidor não encontrado',
+                'server_not_found' => 'O servidor com o id fornecido não existe',
+                'route' => 'Rota não encontrada' 
+            ],
+            '405' => 'Método não permitido' 
         ],
         'success' => [
             'created' => [

@@ -14,6 +14,13 @@ class ServerRepository extends BaseRepository {
         $model = new Server();
         $this->setTable($model->table);
     }
+
+    public function exists(int $id): bool
+    {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM {$this->table} WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        return (bool) $stmt->fetchColumn();
+    }
     
 
     public function getAllServers(): array {
@@ -57,30 +64,57 @@ class ServerRepository extends BaseRepository {
         }
     }
 
-    public function updateServer(Server $server): bool {
+    public function updateServer(Server $server): bool
+    {
         try {
-            $stmt = $this->pdo->prepare("UPDATE {$this->table} SET 
-                name = :name,
-                ip_address = :ip_address,
-                status = :status,
-                cpu_usage = :cpu_usage,
-                memory_usage = :memory_usage,
-                last_checked = :last_checked,
-                is_monitored = :is_monitored
-                WHERE id = :id");
+            $fields = [];
+            $params = [];
+    
+            if ($server->getName() !== null) {
+                $fields[] = "name = :name";
+                $params['name'] = $server->getName();
+            }
+    
+            if ($server->getIpAddress() !== null) {
+                $fields[] = "ip_address = :ip_address";
+                $params['ip_address'] = $server->getIpAddress();
+            }
+    
+            if ($server->getStatus() !== null) {
+                $fields[] = "status = :status";
+                $params['status'] = $server->getStatus();
+            }
+    
+            if ($server->getCpuUsage() !== null) {
+                $fields[] = "cpu_usage = :cpu_usage";
+                $params['cpu_usage'] = $server->getCpuUsage();
+            }
+    
+            if ($server->getMemoryUsage() !== null) {
+                $fields[] = "memory_usage = :memory_usage";
+                $params['memory_usage'] = $server->getMemoryUsage();
+            }
+    
+            if ($server->getLastChecked() !== null) {
+                $fields[] = "last_checked = :last_checked";
+                $params['last_checked'] = $server->getLastChecked();
+            }
+    
+            if ($server->getIsMonitored() !== null) {
+                $fields[] = "is_monitored = :is_monitored";
+                $params['is_monitored'] = $server->getIsMonitored();
+            }
+    
+            $fieldsQuery = implode(', ', $fields);
+            $query = "UPDATE {$this->table} SET {$fieldsQuery} WHERE id = :id";
 
-            return $stmt->execute([
-                'name' => $server->getName(),
-                'ip_address' => $server->getIpAddress(),
-                'status' => $server->getStatus(),
-                'cpu_usage' => $server->getCpuUsage(),
-                'memory_usage' => $server->getMemoryUsage(),
-                'last_checked' => $server->getLastChecked(),
-                'is_monitored' => $server->getIsMonitored(),
-                'id' => $server->getId(),
-            ]);
+            $params['id'] = $server->getId();
+    
+            $stmt = $this->pdo->prepare($query);
+            return $stmt->execute($params);
+            
         } catch (PDOException $e) {
-            throw new \RuntimeException("Failed to update server with ID {$server->getId()}.", 0, $e);
+            throw new RuntimeException("Failed to update server with ID {$server->getId()}.", 0, $e);
         }
     }
 

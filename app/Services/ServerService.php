@@ -13,21 +13,42 @@ class ServerService {
         $this->serverRepository = new ServerRepository();
     }
 
-    private function mapDataToServer(array $data): Server {
+    private function mapDataToServer(array $data): Server
+    {
         $server = new Server();
-
+    
         if (isset($data['id'])) {
             $server->setId($data['id']);
         }
-
-        $server->setName($data['name'] ?? null);
-        $server->setIpAddress($data['ip_address'] ?? null);
-        $server->setStatus($data['status'] ?? null);
-        $server->setCpuUsage($data['cpu_usage'] ?? null);
-        $server->setMemoryUsage($data['memory_usage'] ?? null);
-        $server->setLastChecked($data['last_checked'] ?? null);
-        $server->setIsMonitored($data['is_monitored'] ?? null);
-
+    
+        if (isset($data['name'])) {
+            $server->setName($data['name']);
+        }
+    
+        if (isset($data['ip_address'])) {
+            $server->setIpAddress($data['ip_address']);
+        }
+    
+        if (isset($data['status'])) {
+            $server->setStatus($data['status']);
+        }
+    
+        if (isset($data['cpu_usage'])) {
+            $server->setCpuUsage($data['cpu_usage']);
+        }
+    
+        if (isset($data['memory_usage'])) {
+            $server->setMemoryUsage($data['memory_usage']);
+        }
+    
+        if (isset($data['last_checked'])) {
+            $server->setLastChecked($data['last_checked']);
+        }
+    
+        if (isset($data['is_monitored'])) {
+            $server->setIsMonitored($data['is_monitored']);
+        }
+    
         return $server;
     }
 

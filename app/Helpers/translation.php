@@ -1,6 +1,7 @@
 <?php
 
-function __($key) {
+function __($key, array $attributes = [])
+{
     $config = require __DIR__ . '/../../config/language.php';
     $language = $config['default'];
     
@@ -23,5 +24,11 @@ function __($key) {
         }
     }
 
-    return is_string($translations) ? $translations : $key;
+    if (is_string($translations)) {
+        foreach ($attributes as $placeholder => $value) {
+            $translations = str_replace(":$placeholder", $value, $translations);
+        }
+    }
+
+    return is_string($translations) ? $translations : $key; 
 }

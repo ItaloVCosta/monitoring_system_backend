@@ -53,9 +53,9 @@ if (isset($routes[$method])) {
 
     if (!$matched) {
         http_response_code(404);
-        echo json_encode(['error' => 'Route not found']);
+        echo json_encode([__('words.error') => __('messages.http.error.404.route')]);
     }
 } else {
     http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
+    echo json_encode([__('words.error') => __('messages.http.error.405')]);
 }

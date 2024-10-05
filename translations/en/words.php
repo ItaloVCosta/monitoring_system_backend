@@ -2,5 +2,6 @@
 
 return [
     'error' => 'error',
-    'message' => 'message'
+    'message' => 'message',
+    'details' => 'details'
 ];

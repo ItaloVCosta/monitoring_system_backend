@@ -15,5 +15,6 @@ services:
       MYSQL_DATABASE: monitoring_system
     volumes:
       - ./mysql:/var/lib/mysql
+      - ./database/Migrations:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"

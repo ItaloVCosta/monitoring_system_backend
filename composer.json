@@ -1,0 +1,12 @@
+{
+    "name": "italo_vcosta/monitoring_system_backend",
+    "description": "A Pure PHP API for Retrieving and Managing Server Data",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "app/"
+        ]
+    }
+}

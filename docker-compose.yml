@@ -1,15 +1,15 @@
 services:
   php:
-    image: php:8.3-fpm
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: php_server
     volumes:
       - ./:/var/www/html
     ports:
-      - "8000:80"
-    build:
-      context: .
-      dockerfile: Dockerfile
-  
+      - "8000:8000"
+    working_dir: /var/www/html
+
   mysql:
     image: mysql:8.0
     container_name: mysql_db

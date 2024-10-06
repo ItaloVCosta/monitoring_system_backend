@@ -31,7 +31,7 @@ class StoreServerRequest
             $errors['ip_address'] = __('validation.errors.required_string', ['field' => 'ip_address']);
         }
 
-        if (!isset($data['status']) || !is_int($data['status'])) {
+        if (!isset($data['status']) || !is_bool($data['status'])) {
             $errors['status'] = __('validation.errors.required_integer', ['field' => 'status']);
         }
 

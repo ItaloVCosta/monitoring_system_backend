@@ -1,5 +1,10 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("Access-Control-Allow-Credentials: true");
+
 require_once __DIR__ . '/../vendor/autoload.php';
 $routes = require_once __DIR__ . '/../routes/api.php';
 
@@ -31,10 +36,14 @@ function matchRoute( $route, $uri) {
     return $params;
 }
 
+if ($method === 'OPTIONS') {
+    http_response_code(204); 
+    exit();
+}
 
 if (isset($routes[$method])) {
     $matched = false;
-
+    
     foreach ($routes[$method] as $route => $handler) {
 
         $params = matchRoute($route, $uri);

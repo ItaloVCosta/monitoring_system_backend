@@ -40,7 +40,7 @@ Esse comando instalará todas as dependências necessárias para o projeto.
 
 ### 4. O Projeto Está Pronto!
 
-Com os passos acima concluídos, o backend está pronto para receber requisições. A URL padrão da API é: [http://localhost:8000](http://localhost:8000).
+Com os passos acima concluídos, o backend está pronto para receber requisições. A URL padrão da API é: [http://localhost:8000](http://localhost:8000). Lembre-se de inserir o .env com as devidas variaveis de ambiente.
 
 Para verificar se o projeto está funcionando corretamente, você pode acessar o endereço configurado no navegador ou testar uma das rotas usando um cliente HTTP, como o [Postman](https://www.postman.com/).
 

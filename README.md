@@ -14,7 +14,7 @@ Siga as etapas abaixo para configurar e executar o projeto.
 ### 1. Clone o Repositório
 
 ```bash
-git clone git@github.com:seu-usuario/monitoring_system_backend.git
+git clone https://github.com/ItaloVCosta/monitoring_system_backend.git
 cd monitoring_system_backend
 ```
 

@@ -31,23 +31,23 @@ class StoreServerRequest
             $errors['ip_address'] = __('validation.errors.required_string', ['field' => 'ip_address']);
         }
 
-        if (!isset($data['status']) || !is_bool($data['status'])) {
+        if (!isset($data['status']) || !is_int($data['status'])) {
             $errors['status'] = __('validation.errors.required_integer', ['field' => 'status']);
         }
 
-        if (!isset($data['cpu_usage']) || !is_float($data['cpu_usage'])) {
+        if (isset($data['cpu_usage']) && !is_float($data['cpu_usage'])) {
             $errors['cpu_usage'] = __('validation.errors.required_float', ['field' => 'cpu_usage']);
         }
 
-        if (!isset($data['memory_usage']) || !is_float($data['memory_usage'])) {
+        if (isset($data['memory_usage']) && !is_float($data['memory_usage'])) {
             $errors['memory_usage'] = __('validation.errors.required_float', ['field' => 'memory_usage']);
         }
 
-        if (!isset($data['last_checked']) || !is_string($data['last_checked']) || empty($data['last_checked'])) {
+        if (isset($data['last_checked']) && (!is_string($data['last_checked']) || empty($data['last_checked']))) {
             $errors['last_checked'] = __('validation.errors.required_date', ['field' => 'last_checked']);
         }
 
-        if (!isset($data['is_monitored']) || !is_bool($data['is_monitored'])) {
+        if (!isset($data['is_monitored']) || !is_int($data['is_monitored'])) {
             $errors['is_monitored'] = __('validation.errors.required_boolean', ['field' => 'is_monitored']);
         }
         

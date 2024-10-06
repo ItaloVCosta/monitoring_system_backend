@@ -1,65 +1,48 @@
 
 # Monitoring System Backend
 
-Este repositório contém o código-fonte do backend para o projeto **Monitoring System**, desenvolvido para monitorar e gerenciar recursos de servidores. Ele é projetado para ser executado dentro de contêineres Docker, garantindo uma instalação rápida e fácil em qualquer ambiente.
+This repository contains the backend source code for the **Monitoring System** project, developed to monitor and manage server resources. It is designed to run inside Docker containers, ensuring quick and easy installation in any environment.
 
-## Pré-requisitos
+## Prerequisites
 
-Antes de começar, verifique se você tem o [Docker](https://docs.docker.com/get-docker/) e o [Docker Compose](https://docs.docker.com/compose/install/) instalados no seu sistema.
+Before you begin, make sure you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed on your system.
 
-## Configuração do Projeto
+## Project Setup
 
-Siga as etapas abaixo para configurar e executar o projeto.
+Follow the steps below to set up and run the project.
 
-### 1. Clone o Repositório
+### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:seu-usuario/monitoring_system_backend.git
-cd monitoring_system_backend
+git clone https://github.com/ItaloVCosta/monitoring_system_frontend.git
 ```
 
-### 2. Inicie os Contêineres com Docker Compose
+### 2. Start Containers with Docker Compose
 
-Para construir e iniciar os contêineres, execute o comando abaixo. Ele irá configurar o ambiente de desenvolvimento com todos os serviços necessários:
+To build and start the containers, run the command below. It will set up the development environment with all the necessary services:
 
 ```bash
 docker-compose up --build
 ```
 
-> **Nota:** O parâmetro `--build` é usado para garantir que todas as alterações sejam refletidas nos contêineres ao inicializá-los.
+> **Note:** The `--build` parameter is used to ensure that all changes are reflected in the containers when they are started.
 
-### 3. Instale as Dependências do Composer
+### 3. Install Composer Dependencies
 
-Após os contêineres estarem em execução, abra um novo terminal e execute o comando `composer install` dentro do contêiner do PHP:
+After the containers are up and running, open a new terminal and run the `composer install` command inside the PHP container:
 
 ```bash
 docker-compose exec php_server composer install
 ```
 
-Esse comando instalará todas as dependências necessárias para o projeto.
+This command will install all the necessary dependencies for the project. If this doesn't work, try run direct inside the container the:
 
-### 4. O Projeto Está Pronto!
+```bash
+composer install
+```
 
-Com os passos acima concluídos, o backend está pronto para receber requisições. A URL padrão da API é: [http://localhost:8000](http://localhost:8000). Lembre-se de inserir o .env com as devidas variaveis de ambiente.
+### 4. The Project is Ready!
 
-Para verificar se o projeto está funcionando corretamente, você pode acessar o endereço configurado no navegador ou testar uma das rotas usando um cliente HTTP, como o [Postman](https://www.postman.com/).
+With the above steps completed, the backend is ready to receive requests. The default API URL is: [http://localhost:8000](http://localhost:8000). Make sure to add the `.env` file with the proper environment variables.
 
-## Comandos Úteis
-
-Aqui estão alguns comandos úteis para gerenciar o ambiente de desenvolvimento:
-
-- **Parar os contêineres**:
-  ```bash
-  docker-compose down
-  ```
-
-- **Reiniciar os contêineres**:
-  ```bash
-  docker-compose restart
-  ```
-
-- **Acessar o contêiner PHP**:
-  ```bash
-  docker-compose exec php_server bash
-  ```
-
+To verify that the project is working correctly, you can access the configured address in your browser or test one of the routes using an HTTP client like [Postman](https://www.postman.com/).
